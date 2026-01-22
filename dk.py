@@ -1,14 +1,19 @@
 import argparse
-import asyncio                                                                                                                                       import time
-import sys                                                                                                                                           from typing import Optional
-import aiohttp                                                                                                                                       from rich.console import Console                                                                                                                     from rich.panel import Panel
+import asyncio                     
+import time
+import sys                                                                                        
+from typing import Optional
+import aiohttp                   
+from rich.console import Console 
+from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn
 from rich.table import Table
 from rich import print as rprint
 
 class Result:
     def __init__(self, status_code: Optional[int] = None, duration: Optional[float] = None, error: Optional[Exception] = None):
-        self.status_code = status_code                                                                                                                       self.duration = duration
+        self.status_code = status_code 
+        self.duration = duration
         self.error = error
 
 async def make_request(session: aiohttp.ClientSession, url: str, verbose: bool, index: int) -> Result:
