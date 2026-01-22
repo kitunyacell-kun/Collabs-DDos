@@ -115,6 +115,48 @@ async def main_async(args):
     success_rate = (total_success / total_requests_done) * 100 if total_requests_done > 0 else 0
     rps = total_requests_done / total_duration if total_duration > 0 else 0
 
+    # Print summary table
+    table = Table(title="Report", border_style="blue")
+    table.add_column("Metric", style="cyan")
+    table.add_column("Value", style="magenta")
 
-^G Help         ^O Write Out    ^F Where Is     ^K Cut          ^T Execute      ^C Location     M-U Undo        M-A Set Mark    M-] To Bracket
-^X Exit         ^R Read File    ^\ Replace      ^U Paste
+    table.add_row("Target URL", args.url)
+    table.add_row("Total Requests", str(total_requests_done))
+    table.add_row("Concurrency Level", str(args.concurrency))
+    table.add_row("Successful (2xx)", f"{total_success} ({success_rate:.2f}%)")
+    table.add_row("Failed", str(total_failed))
+    if total_success > 0:
+        table.add_row("Avg Response Time", f"{avg_time:.3f} seconds")
+    table.add_row("Requests Per Second (RPS)", f"{rps:.2f}")
+    table.add_row("Total Time", f"{total_duration:.3f} seconds")
+
+    console.print(table)
+
+def main():
+    parser = argparse.ArgumentParser(description="Phantom Flooder")
+    parser.add_argument("--url", default="http://localhost:8080", help="Target URL to test")
+    parser.add_argument("-n", "--requests", type=int, default=100, help="Total number of requests (ignored if --duration is set)")
+    parser.add_argument("-c", "--concurrency", type=int, default=10, help="Number of concurrent connections")
+    parser.add_argument("--timeout", type=float, default=30.0, help="Request timeout in seconds")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose output")
+    parser.add_argument("--duration", type=float, default=None, help="Run test for this duration in seconds (unlimited requests)")
+    args = parser.parse_args()
+
+    # Validation
+    if args.requests <= 0 and not args.duration:
+        rprint("[red]Error: requests must be positive integer if no duration is set[/red]")
+        sys.exit(1)
+    if args.concurrency <= 0:
+        rprint("[red]Error: concurrency must be positive integer[/red]")
+        sys.exit(1)
+    if args.duration and args.duration <= 0:
+        rprint("[red]Error: duration must be positive[/red]")
+        sys.exit(1)
+
+    asyncio.run(main_async(args))
+
+if __name__ == "__main__":
+    main()
+    
+
+    
