@@ -1,6 +1,6 @@
-. Collabs-DDos
+# Collabs-DDos
 
-. script ini hanya boleh dishare di grup yang telah ditentukan oleh admin
+# This script may not be used to attack government websites
 
-. tidak di benarkan untuk di sebar luaskan kepada grup di luar yang telah ditentukan dengan kata lain boleh dipergunakan diluar grup tapi tdk boleh di sebarkan
-
+# It may not be used by any group or individual for malicious purposes It  
+# may not be distributed without the creator's permission.
