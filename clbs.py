@@ -68,6 +68,13 @@ async def main_async(args):
     console = Console()
 
     # Print professional header
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
     header = Panel(
         "[bold blue]Phantom Flooder[/bold blue]\n"
         "Efficient load testing with asyncio and aiohttp\n"
@@ -97,7 +104,8 @@ async def main_async(args):
             else:
                 total_requests = args.requests
                 requests_per_worker = (total_requests + args.concurrency - 1) // args.concurrency
-                task_ids = [progress.add_task(f"Engine {i+1}", total=requests_per_worker) for i in range(args.concurrency)]
+                task_ids = [progress.add_task(f"Engine {i+1}", total=
+                                              requests_per_worker) for i in range(args.concurrency)]
 
             start_time = time.perf_counter()
 
