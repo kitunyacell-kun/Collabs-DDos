@@ -68,13 +68,13 @@ async def main_async(args):
     console = Console()
 
     # Print professional header
-    print("")
-    print("")
-    print("")
-    print("")
-    print("")
-    print("")
-    print("")
+    print("\033[32m")
+    print("\033[32m")
+    print("\033[32m ")
+    print("\033[32m ")
+    print("\033[32m ")
+    print("\033[32m ")
+    print("\033[32m ")
     header = Panel(
         "[bold blue]Phantom Flooder[/bold blue]\n"
         "Efficient load testing with asyncio and aiohttp\n"
