@@ -69,7 +69,7 @@ async def main_async(args):
 
     # Print professional header
     print("\033[32m")
-    print("\033[32m")
+    print("\033[32m▒▒▒▒▒▒▒▒" ")
     print("\033[32m ")
     print("\033[32m ")
     print("\033[32m ")
