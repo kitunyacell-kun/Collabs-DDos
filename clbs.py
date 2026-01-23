@@ -78,6 +78,10 @@ async def main_async(args):
     print("\033[32m▒▒██████╗▒█████╔╝██║██║▒██████║██╚███╔╝███████╔╝▒▒")
     print("\033[32m▒▒╚═════╝▒╚════╝▒╚═╝╚═╝▒╚═════╝╚═════╝▒▒╚═════╝▒▒▒")
     print("\033[32m▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
+    print(f"\033[97m ╔{'═' * 50}╗")
+    print(f"\033[97m ║ \033[100m{' ' * 4}v.1.0{' ' * 39}\033[0m ║")
+    print(f"\033[97m ║ \033[100m{' ' * 4}https://www.https//kunkaffa@gmail.com{' ' *7}\033[0m ║")
+    print(f"\033[97m ╚{'═' * 50}╝")
     header = Panel(
         "[bold blue]Phantom Flooder[/bold blue]\n"
         "Efficient load testing with asyncio and aiohttp\n"
