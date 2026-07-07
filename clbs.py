@@ -111,7 +111,7 @@ async def main_async(args):
             else:
                 total_requests = args.requests
                 requests_per_worker = (total_requests + args.concurrency - 1) // args.concurrency
-                task_ids = [progress.add_task(f"Engine {i+1}", total=
+                task_ids = [progress.add_task(f"\033[38;5;220mEngine {i+1}", total=
                                               requests_per_worker) for i in range(args.concurrency)]
 
             start_time = time.perf_counter()
@@ -119,7 +119,7 @@ async def main_async(args):
             # Run workers
             workers = []
             for i in range(args.concurrency):
-                workers.append\033[38;5;220m(run_requests(session, args, progress, task_ids[i]))
+                workers.appened(run_requests(session, args, progress, task_ids[i]))
 
             results = await asyncio.gather(*workers)
 
