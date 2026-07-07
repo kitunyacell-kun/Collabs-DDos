@@ -30,7 +30,7 @@ async def make_request(session: aiohttp.ClientSession, url: str, verbose: bool, 
     except Exception as e:
         duration = time.perf_counter() - start
         if verbose:
-            rprint(f"[red]Request {index+1}: Error - {e} (Duration: {duration:.3f}s)[/blue]")
+            rprint(f"[red]Request {index+1}: Error - {e} (Duration: {duration:.3f}s)[/red]")
         return Result(error=e, duration=duration)
 
 async def run_requests(session: aiohttp.ClientSession, args, progress: Progress, task_id: int) -> tuple[int, int, float]:
@@ -67,20 +67,23 @@ async def run_requests(session: aiohttp.ClientSession, args, progress: Progress,
 async def main_async(args):
     console = Console()
 
-    # Print professional header
-    print("\033[32m▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    print("\033[32m▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██╗██╗▒▒▒▒▒▒▒▒██╗▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    print("\033[32m▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██║██║▒▒▒▒▒▒▒▒██║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    print("\033[32m▒▒▒██████╗▒█████╗▒██║██║▒██████╗██████╗▒███████╗▒▒▒")
-    print("\033[32m▒▒██╔════╝██╔══██╗██║██║██╔══██╗██╔══██╗██╔════╝▒▒▒")
-    print("\033[32m▒▒██║▒▒▒▒▒██║▒▒██║██║██║██║▒▒██║██║▒▒██║▒██████╗▒▒▒")
-    print("\033[32m▒▒██║▒▒▒▒▒██║▒▒██║██║██║██║▒▒██║██║▒▒██║▒▒▒▒▒██║▒▒▒")
-    print("\033[32m▒▒▒██████╗▒█████╔╝██║██║▒██████║██╚███╔╝██████╔╝▒▒▒")
-    print("\033[32m▒▒▒╚═════╝▒╚════╝▒╚═╝╚═╝▒╚═════╝╚═════╝▒╚═════╝▒▒▒▒")
-    print("\033[32m▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
+    # ANSI Color Code for Green
+    GREEN = "\033[32m"
+    RESET = "\033[0m"
+
+    # Print the "Collabs" ASCII Art
+    # Menggunakan f + r string untuk kombinasi warna dan raw text
+    print(f"{GREEN}" + r"""
+   _____                 __              __     
+  / ___/__  _______  ___/ /(_)________ _/ /____ 
+  \__ \/ / / / __ \/ __  // / ___/ __ `/ __/ _ \
+ ___/ / /_/ / / / / /_/ // / /__/ /_/ / /_/  __/
+/____/\__, /_/ /_/\__,_//_/\___/\__,_/\__/\___/ 
+     /____/                                           
+""" + f"{RESET}")
     print(f"\033[97m╔{'═' * 50}╗")
-    print(f"\033[97m║\033[100m{' ' * 4}KunFayz{' ' * 38} \033[0m║")
-    print(f"\033[97m║\033[100m{' ' * 4}Black Army 313 internal script{' ' *15} \033[0m║")
+    print(f"\033[97m║\033[100m{' ' * 4}ZBlack313{' ' * 36} \033[0m║")
+    print(f"\033[97m║\033[100m{' ' * 4}Black Army Community {' ' *15} \033[0m║")
     print(f"\033[97m╚{'═' * 50}╝")
     header = Panel(
         "[bold blue]Phantom Flooder[/bold blue]\n"
@@ -107,11 +110,11 @@ async def main_async(args):
         ) as progress:
             if args.duration:
                 total_tasks = args.concurrency  # For duration, we don't know total requests
-                task_ids = [progress.add_task(f"\033[38;5;220mEngine {i+1}", total=None) for i in range(args.concurrency)]
+                task_ids = [progress.add_task(f"Engine {i+1}", total=None) for i in range(args.concurrency)]
             else:
                 total_requests = args.requests
                 requests_per_worker = (total_requests + args.concurrency - 1) // args.concurrency
-                task_ids = [progress.add_task(f"\033[38;5;220mEngine {i+1}", total=
+                task_ids = [progress.add_task(f"Engine {i+1}", total=
                                               requests_per_worker) for i in range(args.concurrency)]
 
             start_time = time.perf_counter()
@@ -119,7 +122,7 @@ async def main_async(args):
             # Run workers
             workers = []
             for i in range(args.concurrency):
-                workers.appened(run_requests(session, args, progress, task_ids[i]))
+                workers.append(run_requests(session, args, progress, task_ids[i]))
 
             results = await asyncio.gather(*workers)
 
