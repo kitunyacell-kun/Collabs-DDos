@@ -140,7 +140,7 @@ async def main_async(args):
 
     # Print summary table
     table = Table(title="Report", border_style="blue")
-    table.add_column("Metric", style="cyan")
+    table.add_column("Metric", style="\033[38;5;220m")
     table.add_column("Value", style="magenta")
 
     table.add_row("Target URL", args.url)
@@ -162,7 +162,7 @@ def main():
     parser.add_argument("-c", "--concurrency", type=int, default=10, help="Number of concurrent connections")
     parser.add_argument("--timeout", type=float, default=30.0, help="Request timeout in seconds")
     parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose output")
-    parser.add_argument("--duration", type=float, default=None, help="\033[38;5;220mRun test for this duration in seconds (unlimited requests)")
+    parser.add_argument("--duration", type=float, default=None, help="Run test for this duration in seconds (unlimited requests)")
     args = parser.parse_args()
 
     # Validation
