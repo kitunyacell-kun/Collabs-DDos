@@ -119,7 +119,7 @@ async def main_async(args):
             # Run workers
             workers = []
             for i in range(args.concurrency):
-                workers.append(run_requests(session, args, progress, task_ids[i]))
+                workers.append\033[38;5;220m(run_requests(session, args, progress, task_ids[i]))
 
             results = await asyncio.gather(*workers)
 
