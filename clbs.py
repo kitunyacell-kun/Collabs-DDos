@@ -107,7 +107,7 @@ async def main_async(args):
         ) as progress:
             if args.duration:
                 total_tasks = args.concurrency  # For duration, we don't know total requests
-                task_ids = [progress.add_task(f"Engine {i+1}", total=None) for i in range(args.concurrency)]
+                task_ids = [progress.add_task(f"\033[38;5;220mEngine {i+1}", total=None) for i in range(args.concurrency)]
             else:
                 total_requests = args.requests
                 requests_per_worker = (total_requests + args.concurrency - 1) // args.concurrency
