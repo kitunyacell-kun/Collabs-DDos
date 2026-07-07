@@ -110,7 +110,7 @@ async def main_async(args):
         ) as progress:
             if args.duration:
                 total_tasks = args.concurrency  # For duration, we don't know total requests
-                task_ids = [progress.add_task(f"Engine {i+1}", total=None) for i in range(args.concurrency)]
+                task_ids = [progress.add_task(f"Engine {i+1}"\033[38;5;220m, total=None) for i in range(args.concurrency)]
             else:
                 total_requests = args.requests
                 requests_per_worker = (total_requests + args.concurrency - 1) // args.concurrency
@@ -140,7 +140,7 @@ async def main_async(args):
 
     # Print summary table
     table = Table(title="Report", border_style="blue")
-    table.add_column("Metric", style="\033[38;5;220m")
+    table.add_column("Metric", style="cyan")
     table.add_column("Value", style="magenta")
 
     table.add_row("Target URL", args.url)
