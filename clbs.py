@@ -140,7 +140,7 @@ async def main_async(args):
 
     # Print summary table
     table = Table(title="Report", border_style="blue")
-    table.add_column("Metric", style="cyan")
+    table.add_column("Metric", style="\033[38;5;220m")
     table.add_column("Value", style="magenta")
 
     table.add_row("Target URL", args.url)
