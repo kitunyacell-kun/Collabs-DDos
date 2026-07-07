@@ -162,7 +162,7 @@ def main():
     parser.add_argument("-c", "--concurrency", type=int, default=10, help="Number of concurrent connections")
     parser.add_argument("--timeout", type=float, default=30.0, help="Request timeout in seconds")
     parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose output")
-    parser.add_argument("--duration", type=float, default=None, help="Run test for this duration in seconds (unlimited requests)")
+    parser.add_argument("--duration", type=float, default=None, help="\033[38;5;220mRun test for this duration in seconds (unlimited requests)")
     args = parser.parse_args()
 
     # Validation
