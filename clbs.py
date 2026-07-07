@@ -67,13 +67,13 @@ async def run_requests(session: aiohttp.ClientSession, args, progress: Progress,
 async def main_async(args):
     console = Console()
 
-    # ANSI Color Code for Green
-    GREEN = "\033[32m"
+    # ANSI Color Code for Gold
+    GOLD = "\033[38;5;220m"
     RESET = "\033[0m"
 
     # Print the "Collabs" ASCII Art
     # Menggunakan f + r string untuk kombinasi warna dan raw text
-    print(f"{GREEN}" + r"""
+    print(f"{GOLD}" + r"""
    _____                 __              __     
   / ___/__  _______  ___/ /(_)________ _/ /____ 
   \__ \/ / / / __ \/ __  // / ___/ __ `/ __/ _ \
