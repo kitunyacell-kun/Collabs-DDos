@@ -105,12 +105,12 @@ async def main_async(args):
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
             BarColumn(),
-            TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+            TextColumn("\033[38;5;220m[progress.percentage]{task.percentage:>3.0f}%"),
             console=console,
         ) as progress:
             if args.duration:
                 total_tasks = args.concurrency  # For duration, we don't know total requests
-                task_ids = [progress.add_task(f"Engine {i+1}"\033[38;5;220m, total=None) for i in range(args.concurrency)]
+                task_ids = [progress.add_task(f"Engine {i+1}", total=None) for i in range(args.concurrency)]
             else:
                 total_requests = args.requests
                 requests_per_worker = (total_requests + args.concurrency - 1) // args.concurrency
