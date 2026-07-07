@@ -30,7 +30,7 @@ async def make_request(session: aiohttp.ClientSession, url: str, verbose: bool, 
     except Exception as e:
         duration = time.perf_counter() - start
         if verbose:
-            rprint(f"\033[38;5;220mRequest {index+1}: Error - {e} (Duration: {duration:.3f}s)")
+            rprint(f"[red]Request {index+1}: Error - {e} (Duration: {duration:.3f}s)[red]")
         return Result(error=e, duration=duration)
 
 async def run_requests(session: aiohttp.ClientSession, args, progress: Progress, task_id: int) -> tuple[int, int, float]:
